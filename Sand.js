@@ -1,29 +1,26 @@
 class Sand{
-    constructor(x,y,diameter){
+
+    constructor(x,y,width,height){
+
         var options={
-           'restitution':1.3,
-            'friction':5,
-            'density':1,
+           'restitution':0.3,
+           'friction':0.5,
+           'density':1.2,
            isStatic:false
-
-        };
-        this.body=Matter.Bodies.circle(x,y,diameter,options)
-       // this.radius=this.radius
-        World.add(world,this.body);
+        }
+        this.body=Bodies.rectangle(x,y,width,height,options)
+        this.width=width;
+        this.height=height;
+        World.add(world,this.body)
+       
     }
-    display(){
-        var pos =this.body.position;
-        var angle = this.body.angle;
-        var dia=this.body.diameter
-        push();
-        //translate(pos.x, pos.y);
-        rotate(angle);
-        ellipseMode(RADIUS);
-        fill("red");
-        ellipse(pos.x,pos.y,4) ;
-        pop();
-     
-    }
-
-  
+  display(){
+      var angle=this.body.angle;
+      push();
+      translate(this.body.position.x,this.body.position.y);
+     // rotate(angle);
+      ellipseMode(CENTER);
+      ellipse(0,0,this.width,this.height);
+      pop();
+  }
 }
